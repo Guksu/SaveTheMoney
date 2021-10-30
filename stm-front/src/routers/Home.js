@@ -26,7 +26,7 @@ const Home = () => {
 
   const getProfit = async () => {
     await axios
-      .get("https://save-the-money.herokuapp.com/allProfit", {
+      .get("http://localhost:4000/allProfit", {
         params: {
           date: selectMonth,
           userid: sessionStorage.getItem("id"),
@@ -39,7 +39,7 @@ const Home = () => {
 
   const getExpense = async () => {
     await axios
-      .get("https://save-the-money.herokuapp.com/allExpense", {
+      .get("http://localhost:4000/allExpense", {
         params: {
           date: selectMonth,
           userid: sessionStorage.getItem("id"),

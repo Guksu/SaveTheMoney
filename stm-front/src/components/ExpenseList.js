@@ -1,9 +1,7 @@
 import React from "react";
 import axios from "axios";
 import ListStyle from "../styles/ListStyle";
-
 const { Li, RemoveBtn } = ListStyle;
-
 const ExpenseList = (props) => {
   const list = props.expenseList;
 
@@ -12,12 +10,9 @@ const ExpenseList = (props) => {
       {list.map((item) => {
         const onRemoveClick = async () => {
           window.location.reload();
-          await axios.post(
-            "https://save-the-money.herokuapp.com/deleteExpense",
-            {
-              expenseNo: item.expenseNo,
-            }
-          );
+          await axios.post("http://localhost:4000/deleteExpense", {
+            expenseNo: item.expenseNo,
+          });
         };
 
         return (
