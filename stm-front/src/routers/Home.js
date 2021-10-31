@@ -23,6 +23,7 @@ const Home = () => {
   );
   const [allProfit, setAllProfit] = useState([]);
   const [allExpense, setAllExpense] = useState([]);
+  const history = useHistory();
 
   const getProfit = async () => {
     await axios
@@ -49,8 +50,6 @@ const Home = () => {
         setAllExpense(res.data);
       });
   };
-
-  const history = useHistory();
 
   const onClickLogout = () => {
     sessionStorage.removeItem("id");
