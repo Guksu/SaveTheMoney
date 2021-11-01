@@ -84,7 +84,7 @@ const MonthExpenseCharts = (props) => {
 
   useEffect(() => {
     getExpense();
-  }, props.selectMonth);
+  }, [props.selectMonth]);
 
   return (
     <div style={{ height: 300 }}>

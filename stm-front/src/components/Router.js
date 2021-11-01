@@ -12,7 +12,7 @@ const AppRouter = () => {
     if (sessionStorage.getItem("id") !== null) {
       setIslogin(true);
     }
-  });
+  }, [islogin]);
   return (
     <Router>
       <Switch>
