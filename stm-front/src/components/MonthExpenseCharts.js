@@ -4,21 +4,21 @@ import axios from "axios";
 
 const MonthExpenseCharts = (props) => {
   const [list, setList] = useState([]);
-  const getExpense = async () => {
-    await axios
-      .get("http://localhost:4000/home/expenseChart", {
-        params: {
-          date: props.selectMonth,
-          userid: sessionStorage.getItem("id"),
-        },
-      })
-      .then((res) => {
-        setList(res.data);
-      });
-  };
 
   useEffect(() => {
-    getExpense();
+    async function fetchData() {
+      await axios
+        .get("http://localhost:4000/home/expenseChart", {
+          params: {
+            date: props.selectMonth,
+            userid: sessionStorage.getItem("id"),
+          },
+        })
+        .then((res) => {
+          setList(res.data);
+        });
+    }
+    fetchData();
   }, [props]);
 
   const food = list.filter((item) => item.category === "식비");

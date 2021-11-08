@@ -5,18 +5,21 @@ import axios from "axios";
 const MonthProfitCharts = (props) => {
   const [list, setList] = useState([]);
 
-  const getProfit = async () => {
-    await axios
-      .get("http://localhost:4000/home/profitChart", {
-        params: {
-          date: props.selectMonth,
-          userid: sessionStorage.getItem("id"),
-        },
-      })
-      .then((res) => {
-        setList(res.data);
-      });
-  };
+  useEffect(() => {
+    async function fetchData() {
+      await axios
+        .get("http://localhost:4000/home/profitChart", {
+          params: {
+            date: props.selectMonth,
+            userid: sessionStorage.getItem("id"),
+          },
+        })
+        .then((res) => {
+          setList(res.data);
+        });
+    }
+    fetchData();
+  }, [props.selectMonth]);
 
   const wage = list.filter((item) => item.category === "급여");
   const investment = list.filter((item) => item.category === "투자");
@@ -69,10 +72,6 @@ const MonthProfitCharts = (props) => {
       color: "hsl(320, 70%, 50%)",
     },
   ];
-
-  useEffect(() => {
-    getProfit();
-  }, [props.selectMonth]);
 
   return (
     <div style={{ height: 300 }}>

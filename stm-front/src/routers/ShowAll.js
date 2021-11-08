@@ -15,28 +15,34 @@ const ShowAll = () => {
   const [profitList, setProfitList] = useState([]);
   const [expenseList, setExpenseList] = useState([]);
 
-  useEffect(async () => {
-    await axios
-      .get("http://localhost:4000/show/profit", {
-        params: {
-          userid: sessionStorage.getItem("id"),
-        },
-      })
-      .then((res) => {
-        setProfitList(res.data);
-      });
+  useEffect(() => {
+    async function fetchData() {
+      await axios
+        .get("http://localhost:4000/show/profit", {
+          params: {
+            userid: sessionStorage.getItem("id"),
+          },
+        })
+        .then((res) => {
+          setProfitList(res.data);
+        });
+    }
+    fetchData();
   }, []);
 
-  useEffect(async () => {
-    axios
-      .get("http://localhost:4000/show/expense", {
-        params: {
-          userid: sessionStorage.getItem("id"),
-        },
-      })
-      .then((res) => {
-        setExpenseList(res.data);
-      });
+  useEffect(() => {
+    async function fetchData() {
+      axios
+        .get("http://localhost:4000/show/expense", {
+          params: {
+            userid: sessionStorage.getItem("id"),
+          },
+        })
+        .then((res) => {
+          setExpenseList(res.data);
+        });
+    }
+    fetchData();
   }, []);
 
   return (
