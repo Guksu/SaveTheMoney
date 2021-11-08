@@ -7,7 +7,7 @@ const MonthProfitCharts = (props) => {
 
   const getProfit = async () => {
     await axios
-      .get("http://localhost:4000/homeProfitChart", {
+      .get("http://localhost:4000/home/profitChart", {
         params: {
           date: props.selectMonth,
           userid: sessionStorage.getItem("id"),

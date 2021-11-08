@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const LoginInput = styled.div`
-  margin-top: 8%;
-  margin-left: 44%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const Input = styled.input`
   border: 0px;
@@ -18,8 +19,8 @@ const Input = styled.input`
 `;
 const BtnDiv = styled.div`
   display: flex;
-  margin-top: 2%;
-  margin-left: 44%;
+  justify-content: center;
+  margin-top: 3%;
 `;
 const LoginBtn = styled.button`
   width: 120px;

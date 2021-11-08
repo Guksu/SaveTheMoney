@@ -10,7 +10,7 @@ const ExpenseList = (props) => {
       {list.map((item) => {
         const onRemoveClick = async () => {
           window.location.reload();
-          await axios.post("http://localhost:4000/deleteExpense", {
+          await axios.post("http://localhost:4000/remove/expense", {
             expenseNo: item.expenseNo,
           });
         };

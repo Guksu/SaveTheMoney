@@ -17,7 +17,7 @@ const ShowAll = () => {
 
   useEffect(async () => {
     await axios
-      .get("http://localhost:4000/showProfit", {
+      .get("http://localhost:4000/show/profit", {
         params: {
           userid: sessionStorage.getItem("id"),
         },
@@ -29,7 +29,7 @@ const ShowAll = () => {
 
   useEffect(async () => {
     axios
-      .get("http://localhost:4000/showExpense", {
+      .get("http://localhost:4000/show/expense", {
         params: {
           userid: sessionStorage.getItem("id"),
         },

@@ -12,7 +12,7 @@ const ProfitList = (props) => {
       {list.map((item) => {
         const onRemoveClick = async () => {
           window.location.reload();
-          await axios.post("http://localhost:4000/deleteProfit", {
+          await axios.post("http://localhost:4000/remove/profit", {
             profitNo: item.profitNo,
           });
         };

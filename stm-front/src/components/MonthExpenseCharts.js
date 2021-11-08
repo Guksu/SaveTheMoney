@@ -4,10 +4,9 @@ import axios from "axios";
 
 const MonthExpenseCharts = (props) => {
   const [list, setList] = useState([]);
-
   const getExpense = async () => {
     await axios
-      .get("http://localhost:4000/homeExpenseChart", {
+      .get("http://localhost:4000/home/expenseChart", {
         params: {
           date: props.selectMonth,
           userid: sessionStorage.getItem("id"),
@@ -17,6 +16,10 @@ const MonthExpenseCharts = (props) => {
         setList(res.data);
       });
   };
+
+  useEffect(() => {
+    getExpense();
+  }, [props]);
 
   const food = list.filter((item) => item.category === "식비");
   const clothes = list.filter((item) => item.category === "의류비");
@@ -81,10 +84,6 @@ const MonthExpenseCharts = (props) => {
       color: "hsl(228, 70%, 50%)",
     },
   ];
-
-  useEffect(() => {
-    getExpense();
-  }, [props.selectMonth]);
 
   return (
     <div style={{ height: 300 }}>

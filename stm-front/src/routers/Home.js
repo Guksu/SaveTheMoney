@@ -17,6 +17,7 @@ const {
   Ul,
   Li,
 } = HomeStyle;
+
 const Home = () => {
   const [selectMonth, setSelectMonth] = useState(
     new Date().toISOString().slice(0, 7)
@@ -27,7 +28,7 @@ const Home = () => {
 
   const getProfit = async () => {
     await axios
-      .get("http://localhost:4000/allProfit", {
+      .get("http://localhost:4000/home/profit", {
         params: {
           date: selectMonth,
           userid: sessionStorage.getItem("id"),
@@ -40,7 +41,7 @@ const Home = () => {
 
   const getExpense = async () => {
     await axios
-      .get("http://localhost:4000/allExpense", {
+      .get("http://localhost:4000/home/expense", {
         params: {
           date: selectMonth,
           userid: sessionStorage.getItem("id"),
@@ -81,14 +82,22 @@ const Home = () => {
       <Ul>
         {allProfit.map((item) => {
           if (item.profit !== null) {
-            return <Li>총 수입 : [ {item.profit.toLocaleString()}원 ] </Li>;
+            return (
+              <Li key={item.profitNo}>
+                총 수입 : [ {item.profit.toLocaleString()}원 ]{" "}
+              </Li>
+            );
           } else {
             return <Li>총 수입 : [ 0원 ]</Li>;
           }
         })}
         {allExpense.map((item) => {
           if (item.expense !== null) {
-            return <Li>총 지출 : [ {item.expense.toLocaleString()}원 ]</Li>;
+            return (
+              <Li key={item.expenseNo}>
+                총 지출 : [ {item.expense.toLocaleString()}원 ]
+              </Li>
+            );
           } else {
             return <Li>총 수입 : [ 0원 ]</Li>;
           }
